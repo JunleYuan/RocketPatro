@@ -13,7 +13,6 @@ class Play extends Phaser.Scene {
     }
 
     create() {
-
         // place tile sprite
         this.starfield = this.add.tileSprite(0, 0, 640, 480, 'starfield').setOrigin(0, 0);
 
@@ -63,10 +62,7 @@ class Play extends Phaser.Scene {
             fixedWidth: 100
         }
         this.scoreLeft = this.add.text(borderUISize + borderPadding, borderUISize + borderPadding*2, this.p1Score, scoreConfig);
-        
-        //var time = new Date();
-        this.see_delta = this.add.text(100,100, "delta", scoreConfig);
-        this.see_time = this.add.text(150,150, "time", scoreConfig);
+
         // GAME OVER flag
         this.gameOver = false;
 
@@ -79,10 +75,7 @@ class Play extends Phaser.Scene {
         }, null, this);
     }
 
-    update(delta) {
-
-        this.see_delta.text =  parseInt(parseInt(delta, 10)/1000); 
-    
+    update() {
         // check key input for restart / menu
         if(this.gameOver && Phaser.Input.Keyboard.JustDown(keyR)) {
             this.scene.restart();
@@ -91,7 +84,6 @@ class Play extends Phaser.Scene {
         if(this.gameOver && Phaser.Input.Keyboard.JustDown(keyLEFT)) {
             this.scene.start("menuScene");
         }
-
 
         this.starfield.tilePositionX -= 4;  // update tile sprite
 
